@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -451,7 +452,7 @@
                     ctx.clip();
 
                     if (img.complete) {
-                        ctx.filter = 'grayscale(100%)'; // Maintain monochrome
+                        ctx.filter = 'grayscale(100%) blur(2px)'; // Maintain monochrome + new BLUR
                         ctx.drawImage(img, x, y, this.size, this.size);
                     }
                     ctx.restore();
