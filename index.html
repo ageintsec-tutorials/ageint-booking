@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ageint Booking</title>
+
+    <!-- 1. HEAD SCRIPT (Place this in the <head> of your HTML files) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QYBNMVWWR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4QYBNMVWWR');
+    </script>
 
     <!-- Google Fonts: Roboto & Outfit (for headers) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,10 +322,29 @@
         </div>
     </div>
 
+    <!-- 2. HELPER FUNCTIONS (Place this in your main JavaScript file or script block) -->
+    <script>
+        /**
+         * Wrapper for Google Analytics events.
+         * Safely checks if 'gtag' exists before calling it.
+         * @param {string} name - The event name (e.g., 'customer_contact_action')
+         * @param {object} params - Optional parameters (e.g., { channel: 'sms', context: 'header' })
+         */
+        const trackEvent = (name, params = {}) => {
+            if (typeof gtag === 'function') {
+                gtag('event', name, params);
+            }
+        };
+
+
+    </script>
+
     <script>
         function startBooking() {
             // Add hidden class to landing (triggers slide-up fade out)
             document.getElementById('landing-view').classList.add('hidden');
+
+            trackEvent('booking_start', { location: 'landing_page' });
 
             // Add active class to booking (triggers scale in fade in)
             document.getElementById('booking-view').classList.add('active');
